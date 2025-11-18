@@ -1,0 +1,20 @@
+name: Build Mini Web Docker
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout del repositorio
+      uses: actions/checkout@v4
+
+    - name: Ver versión de Docker
+      run: docker --version
+
+    - name: Construir la imagen Docker
+      run: docker build -t mini-web:1.0 .
