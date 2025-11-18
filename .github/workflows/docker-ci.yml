@@ -1,0 +1,44 @@
+name: Docker CI/CD (Construir y Subir)
+
+on:
+  push:
+    branches: [ "main" ] # Se ejecuta solo cuando hay un push a la rama 'main'
+
+env:
+  # Nombre de tu repositorio en Docker Hub (ej: nombreusuario/mini-web)
+  DOCKER_IMAGE_NAME: ${{ secrets.DOCKER_USERNAME }}/mini-web 
+  
+jobs:
+  build_and_push:
+    runs-on: ubuntu-latest
+    
+    # Define las variables de entorno para los tags de la imagen
+    steps:
+    - name: ⬇️ Checkout del código
+      uses: actions/checkout@v4
+
+    - name: ⚙️ Configurar Docker Buildx (para multiarquitectura)
+      uses: docker/setup-buildx-action@v3
+
+    - name: 🔒 Loguearse en Docker Hub
+      uses: docker/login-action@v3
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }} # Tu secreto del username
+        password: ${{ secrets.DOCKER_TOKEN }}    # Tu secreto del Token de Acceso Personal (PAT)
+
+    - name: 🔖 Obtener Tags y Labels
+      id: meta
+      uses: docker/metadata-action@v5
+      with:
+        images: ${{ env.DOCKER_IMAGE_NAME }}
+        tags: |
+          type=raw,value=latest
+          type=sha,format=short
+
+    - name: 📦 Construir y Subir la Imagen a Docker Hub
+      uses: docker/build-push-action@v5
+      with:
+        context: . # Usa el Dockerfile en la raíz del repositorio
+        push: true # Habilita el push a Docker Hub
+        tags: ${{ steps.meta.outputs.tags }}
+        labels: ${{ steps.meta.outputs.labels }}
