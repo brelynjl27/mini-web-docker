@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Mini Web DevOps con Docker</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <h1>🐳 Mini Proyecto DevOps</h1>
+        <p>Desplegando una página estática dentro de un contenedor Docker</p>
+    </header>
+
+    <section class="intro">
+        <h2>¿Qué es Docker?</h2>
+        <p>
+            Docker es una plataforma que permite empaquetar, distribuir y ejecutar aplicaciones
+            dentro de <strong>contenedores</strong>. Un contenedor es como una caja que incluye
+            todo lo necesario para que tu aplicación funcione:
+            código, dependencias y configuración.
+        </p>
+    </section>
+
+    <section class="details">
+        <div class="card">
+            <h3>📦 Imágenes Docker</h3>
+            <p>
+                Una <strong>imagen</strong> es una plantilla congelada que contiene tu aplicación
+                y su entorno. A partir de una imagen puedes crear muchos contenedores.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>🐳 Contenedores</h3>
+            <p>
+                Un <strong>contenedor</strong> es una instancia ejecutándose de una imagen.
+                Puedes tener 10 contenedores creados desde la misma imagen.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>🔧 Dockerfile</h3>
+            <p>
+                El Dockerfile es un archivo donde escribes instrucciones para construir
+                la imagen. Desde él, Docker sabe cómo configurar tu aplicación.
+            </p>
+        </div>
+    </section>
+
+    <section class="button-area">
+        <h2>Prueba el botón</h2>
+        <p>Este mensaje se ejecuta desde JavaScript dentro del contenedor:</p>
+        <button onclick="saludar()">Haz clic aquí</button>
+    </section>
+
+    <footer>
+        <p>© 2025 - Proyecto DevOps Junior con Docker</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
