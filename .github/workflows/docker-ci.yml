@@ -15,7 +15,7 @@ jobs:
     
     steps:
     - name: ⬇️ Checkout del código
-      uses: actions/checkout@v4
+      uses: actions/checkout@v3
 
     - name: ⚙️ Configurar Docker Buildx
       # Necesario para construir imágenes de manera eficiente
